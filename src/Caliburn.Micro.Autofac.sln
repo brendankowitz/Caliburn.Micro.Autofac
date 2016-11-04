@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		AssemblyVersion.cs = AssemblyVersion.cs
 		..\License.txt = ..\License.txt
 		Caliburn.Micro.Autofac.Packaging\Package.nuspec = Caliburn.Micro.Autofac.Packaging\Package.nuspec
+		NuGet.Config = NuGet.Config
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
@@ -24,6 +25,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{7DA83FE0-220F-4701-87F2-23C16A1FE2CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample-Win8.1", "..\samples\Sample-Win81\Sample-Win8.1.csproj", "{8EEBF2DF-D20C-4480-9AC2-51880882535D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0451BAEF-DF2E-4B98-8644-94EE9415E389} = {0451BAEF-DF2E-4B98-8644-94EE9415E389}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caliburn.Micro.Autofac.WinStore", "Caliburn.Micro.Autofac.UniversalApps\Caliburn.Micro.Autofac.WinStore.csproj", "{9C57AD35-713A-4445-A63F-2584FA834544}"
 EndProject
