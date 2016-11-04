@@ -183,6 +183,10 @@
       <HintPath>..\..\src\packages\Caliburn.Micro.Core.3.0.1\lib\portable-net45+win8+wp8+wpa81+MonoAndroid10+Xamarin.iOS10+MonoTouch10+uap10.0\Caliburn.Micro.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Caliburn.Micro.Autofac, Version=2.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\src\packages\Caliburn.Micro.AutofacBootstrap.2.0.8\lib\portable-net45+win8+wpa81\Caliburn.Micro.Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Caliburn.Micro.Platform, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <HintPath>..\..\src\packages\Caliburn.Micro.3.0.1\lib\win81\Caliburn.Micro.Platform.dll</HintPath>
       <Private>True</Private>
@@ -195,12 +199,6 @@
       <HintPath>..\..\src\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\win8\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Caliburn.Micro.Autofac.UniversalApps\Caliburn.Micro.Autofac.WinStore.csproj">
-      <Project>{9c57ad35-713a-4445-a63f-2584fa834544}</Project>
-      <Name>Caliburn.Micro.Autofac.WinStore</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="BehaviorsXamlSDKManaged, version=12.0">
