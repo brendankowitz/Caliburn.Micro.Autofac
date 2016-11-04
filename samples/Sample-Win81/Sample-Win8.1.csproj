@@ -12,10 +12,10 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>CaliburnMicroWinRT_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Sample-Win8.1_TemporaryKey.pfx</PackageCertificateKeyFile>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">.\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <PackageCertificateThumbprint>CCB24CFE305DCD9CEEC919F1730F508FD40E9CD2</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>F79B0043AADD97A1AD0D256B59FB83AC60A6D814</PackageCertificateThumbprint>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
     <TargetFrameworkVersion />
@@ -140,6 +140,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
+    <None Include="Sample-Win8.1_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Logo.png" />

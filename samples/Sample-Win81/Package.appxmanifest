@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="ebf9a812-e37f-449f-b413-bb3aa3ee951a" Publisher="CN=x-dev" Version="1.1.0.0" />
+  <Identity Name="ebf9a812-e37f-449f-b413-bb3aa3ee951a" Publisher="CN=dev" Version="1.1.0.0" />
   <Properties>
     <DisplayName>CaliburnMicroWinRT</DisplayName>
     <PublisherDisplayName>Mikael</PublisherDisplayName>
