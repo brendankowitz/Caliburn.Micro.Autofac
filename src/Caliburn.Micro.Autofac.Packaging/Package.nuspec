@@ -17,13 +17,15 @@
       Integration of Caliburn.Micro with Autofac. 
     </summary>
     <releaseNotes>
-* Updated to Caliburn Micro 2.0.2
+* Updated WPF version to .NET framework 4.5
+* Updated to Autofac 4.2.0
+* Removed Windows Phone 8-related versions and samples
     </releaseNotes>
     <tags>Caliburn.Micro Autofac IoC DI MVVM</tags>
     <language>en-US</language>
     <dependencies>
       <dependency id="Caliburn.Micro" version="2.0.2" />
-      <dependency id="Autofac" version="3.5.2" />
+      <dependency id="Autofac" version="4.2.0" />
     </dependencies>
     <references></references>
   </metadata>
