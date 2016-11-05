@@ -1,7 +1,4 @@
-﻿using System;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
+﻿using System.Reflection;
 
 
 [assembly: AssemblyTitleAttribute("Caliburn.Micro.AutofacBootstrap")]
@@ -12,6 +9,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: AssemblyVersionAttribute("2.0.9.0")]
-[assembly: AssemblyFileVersionAttribute("2.0.9.0")]
+[assembly: AssemblyVersionAttribute("3.0.0.0")]
+[assembly: AssemblyFileVersionAttribute("3.0.0.0")]
 
