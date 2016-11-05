@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Caliburn.Micro.AutofacBootstrap</id>
-    <version>2.0.9</version>
+    <version>0.0.0</version>
     <title>Caliburn.Micro.AutofacBootstrap</title>
     <authors>Brendan Kowitz, David Buksbaum, Ziya SARIKAYA</authors>
     <owners>Brendan Kowitz</owners>
@@ -29,7 +29,5 @@
   </metadata>
   <files>
     <file src="lib\**" target="lib" />
-    <!--file src="tools\" target="tools" />
-    <file src="content\" target="content" /-->
   </files>
 </package>
