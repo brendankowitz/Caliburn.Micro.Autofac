@@ -15,6 +15,10 @@ From Visual Studio Package Manager Console - or from a PowerShell console positi
 PM> Install-Package Caliburn.Micro.AutofacBootstrap
 ```
 
+## Usage
+
+Please refer to [sample projects](./tree/master/samples) on different platforms found in Visual Studio solution.
+
 ## Contributing
 
 Please refer to [CONTRIBUTING](./CONTRIBUTING.md) page.
