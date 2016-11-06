@@ -1,15 +1,30 @@
 # Caliburn.Micro.AutofacBootstrap
 
-Home of the [Caliburn.Micro.AutofacBootstrap](http://nuget.org/List/Packages/Caliburn.Micro.AutofacBootstrap) nuget package.
+Home of the [Caliburn.Micro.AutofacBootstrap](http://nuget.org/packages/Caliburn.Micro.AutofacBootstrap) nuget package.
 Integrates [Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro) bootstrapping phase with [Autofac](https://github.com/autofac/Autofac) IoC container,
 so that you can register dependencies at application starts up and make them available to view-models and other components.
 
-## Building from Source
+[![NuGet](http://img.shields.io/nuget/v/Caliburn.Micro.AutofacBootstrap.svg)](https://www.nuget.org/packages/Caliburn.Micro.AutofacBootstrap/)
+[![Build status](https://ci.appveyor.com/api/projects/status/github/brendankowitz/Caliburn.Micro.Autofac?svg=true)](https://ci.appveyor.com/api/projects/status/github/brendankowitz/Caliburn.Micro.Autofac)
+
+## Installing
+
+From Visual Studio Package Manager Console - or from a PowerShell console positioned on your project directory - run:
+
+```
+PM> Install-Package Caliburn.Micro.AutofacBootstrap
+```
+
+## Contributing
+
+### Building from Source
 
 Minimum requirements:
 
 * Visual Studio Community 2013
 * Windows Phone SDK 8.0, available [here](https://www.microsoft.com/en-us/download/details.aspx?id=35471)
+
+To do a quick sanity check, run one of the available sample projects from Visual Studio.
 
 ### Troubleshooting
 
