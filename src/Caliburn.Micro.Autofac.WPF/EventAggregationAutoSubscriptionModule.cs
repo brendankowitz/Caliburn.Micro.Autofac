@@ -8,27 +8,40 @@ namespace Caliburn.Micro.Autofac
     protected override void AttachToComponentRegistration(IComponentRegistry registry,
                                                           IComponentRegistration registration)
     {
-      if (registration.Activator.LimitType.IsAssignableTo<IHandle>())
-      {
-        registration.Activated += (sender,
-                                   args) =>
+      registration.Activated += (sender,
+                                 args) =>
+                                {
+                                  //  we never want to fail, so check for null (should never happen), and return if it is
+                                  if (args == null)
                                   {
-                                    var instance = args.Instance;
+                                    return;
+                                  }
 
-                                    var context = args.Context;
-                                    var lifetimeScope = context.Resolve<ILifetimeScope>();
-                                    var eventAggregator = lifetimeScope.Resolve<IEventAggregator>();
+                                  //  try to convert instance to IHandle
+                                  //  I originally did e.Instance.GetType().IsAssignableTo<>() and then 'as',
+                                  //  but it seemed redundant
 
-                                    eventAggregator.Subscribe(instance);
+                                  var handler = args.Instance as IHandle;
+                                  if (handler == null)
+                                  {
+                                    return;
+                                  }
 
-                                    var disposableWrapper = new DisposableWrapper(() =>
-                                                                                  {
-                                                                                    eventAggregator.Unsubscribe(instance);
-                                                                                  });
+                                  //  if it is not null, it implements, so subscribe
 
-                                    lifetimeScope.Disposer.AddInstanceForDisposal(disposableWrapper);
-                                  };
-      }
+                                  var context = args.Context;
+                                  var lifetimeScope = context.Resolve<ILifetimeScope>();
+                                  var eventAggregator = lifetimeScope.Resolve<IEventAggregator>();
+
+                                  eventAggregator.Subscribe(handler);
+
+                                  var disposableWrapper = new DisposableWrapper(() =>
+                                                                                {
+                                                                                  eventAggregator.Unsubscribe(handler);
+                                                                                });
+
+                                  lifetimeScope.Disposer.AddInstanceForDisposal(disposableWrapper);
+                                };
     }
   }
 }
