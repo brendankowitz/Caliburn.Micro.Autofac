@@ -5,22 +5,30 @@ namespace Caliburn.Micro.Autofac
 {
   public class EventAggregationAutoSubscriptionModule : Module
   {
-    protected override void AttachToComponentRegistration(IComponentRegistry registry, IComponentRegistration registration)
+    protected override void AttachToComponentRegistration(IComponentRegistry registry,
+                                                          IComponentRegistration registration)
     {
-      registration.Activated += OnComponentActivated;
-    }
+      if (registration.Activator.LimitType.IsAssignableTo<IHandle>())
+      {
+        registration.Activated += (sender,
+                                   args) =>
+                                  {
+                                    var instance = args.Instance;
 
-    static void OnComponentActivated(object sender, ActivatedEventArgs<object> e)
-    { //  we never want to fail, so check for null (should never happen), and return if it is
-      if (e == null)
-        return;
-      //  try to convert instance to IHandle
-      //  I originally did e.Instance.GetType().IsAssignableTo<>() and then 'as', 
-      //  but it seemed redundant
-      var handler = e.Instance as IHandle;
-      //  if it is not null, it implements, so subscribe
-      if(handler != null)
-        e.Context.Resolve<IEventAggregator>().Subscribe(handler);
+                                    var context = args.Context;
+                                    var lifetimeScope = context.Resolve<ILifetimeScope>();
+                                    var eventAggregator = lifetimeScope.Resolve<IEventAggregator>();
+
+                                    eventAggregator.Subscribe(instance);
+
+                                    var disposableWrapper = new DisposableWrapper(() =>
+                                                                                  {
+                                                                                    eventAggregator.Unsubscribe(instance);
+                                                                                  });
+
+                                    lifetimeScope.Disposer.AddInstanceForDisposal(disposableWrapper);
+                                  };
+      }
     }
   }
 }
