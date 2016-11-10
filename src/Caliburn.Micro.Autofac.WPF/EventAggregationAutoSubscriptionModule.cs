@@ -30,12 +30,12 @@ namespace Caliburn.Micro.Autofac
 
                 eventAggregator.Subscribe(handler);
 
-                var disposableWrapper = new DisposableWrapper(() =>
+                var disposableAction = new DisposableAction(() =>
                 {
                     eventAggregator.Unsubscribe(handler);
                 });
 
-                lifetimeScope.Disposer.AddInstanceForDisposal(disposableWrapper);
+                lifetimeScope.Disposer.AddInstanceForDisposal(disposableAction);
             };
         }
     }

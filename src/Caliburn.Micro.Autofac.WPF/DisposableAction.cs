@@ -4,10 +4,10 @@ using Autofac.Util;
 namespace Caliburn.Micro.Autofac
 {
   /// <remarks>similar to Autofac.Util.ReleaseAction</remarks>
-  public sealed class DisposableWrapper : Disposable
+  public sealed class DisposableAction : Disposable
   {
     /// <exception cref="ArgumentNullException"><paramref name="action" /> is <see langword="null" />.</exception>
-    public DisposableWrapper(System.Action action)
+    public DisposableAction(System.Action action)
     {
       if (action == null)
       {
