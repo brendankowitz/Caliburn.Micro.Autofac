@@ -275,5 +275,8 @@ desktop.ini
 # Caliburn.Micro.Autofac #
 ##########################
 
+# Ignore assemblies for packaging
+**/lib/**
+
 # Keep pfx files for samples, otherwise ignored
 !samples/**/*.pfx
