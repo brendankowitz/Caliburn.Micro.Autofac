@@ -9,23 +9,20 @@ namespace Caliburn.Micro.Autofac
         {
             registration.Activated += (sender, args) =>
             {
-                //  we never want to fail, so check for null (should never happen), and return if it is
+                //  nothing we can do if a null event argument is passed (should never happen)
                 if (args == null)
                 {
                     return;
                 }
 
-                //  try to convert instance to IHandle
-                //  I originally did e.Instance.GetType().IsAssignableTo<>() and then 'as',
-                //  but it seemed redundant
-
+                //  nothing we can do if instance is not a handler
                 var handler = args.Instance as IHandle;
                 if (handler == null)
                 {
                     return;
                 }
 
-                //  if it is not null, it implements, so subscribe
+                //  subscribe to handler, and prepare unsubscription when it's time for disposal
 
                 var context = args.Context;
                 var lifetimeScope = context.Resolve<ILifetimeScope>();
