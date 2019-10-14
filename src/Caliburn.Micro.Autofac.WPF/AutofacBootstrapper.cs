@@ -47,6 +47,45 @@ namespace Caliburn.Micro.Autofac
         #endregion
 
         /// <summary>
+        /// Checks whether to register the specified <c>View</c> type.
+        /// </summary>
+        /// <remarks>Override this method in order to apply additional registration rules.</remarks>
+        /// <param name="type">Type of the <c>View</c> to check.</param>
+        /// <returns><b>true</b> if <c>View</c> must be registered; <b>false</b> otherwise.</returns>
+        protected virtual bool CheckRegisterView(Type type)
+        {
+            //  must be a type with a name that ends with View
+            if (!type.Name.EndsWith("View"))
+                return false;
+
+            //  must be in a namespace that ends in Views
+            if (EnforceNamespaceConvention)
+                return !string.IsNullOrWhiteSpace(type.Namespace) && type.Namespace.EndsWith("Views");
+
+            return true;
+        }
+
+        /// <summary>
+        /// Checks whether to register the specified <c>ViewModel</c> type.
+        /// </summary>
+        /// <remarks>Override this method in order to apply additional registration rules.</remarks>
+        /// <param name="type">Type of the <c>ViewModel</c> to check.</param>
+        /// <returns><b>true</b> if <c>ViewModel</c> must be registered; <b>false</b> otherwise.</returns>
+        protected virtual bool CheckRegisterViewModel(Type type)
+        {
+            //  must be a type with a name that ends with ViewModel
+            if (!type.Name.EndsWith("ViewModel"))
+                return false;
+
+            //  must be in a namespace ending with ViewModels
+            if (EnforceNamespaceConvention)
+                return !string.IsNullOrWhiteSpace(type.Namespace) && type.Namespace.EndsWith("ViewModels");
+
+            //  must implement INotifyPropertyChanged (deriving from PropertyChangedBase will satisfy this)
+            return type.GetInterface(ViewModelBaseType.Name, false) != null;
+        }
+
+        /// <summary>
         /// Do not override this method. This is where the IoC container is configured.
         /// <remarks>
         /// Will throw <see cref="System.ArgumentNullException"/> is either CreateWindowManager
@@ -59,36 +98,28 @@ namespace Caliburn.Micro.Autofac
 
             //  validate settings
             if (CreateWindowManager == null)
-                throw new ArgumentNullException("CreateWindowManager");
+                throw new ArgumentNullException(nameof(CreateWindowManager));
+
             if (CreateEventAggregator == null)
-                throw new ArgumentNullException("CreateEventAggregator");
+                throw new ArgumentNullException(nameof(CreateEventAggregator));
 
             //  configure container
             var builder = new ContainerBuilder();
 
             //  register view models
             builder.RegisterAssemblyTypes(AssemblySource.Instance.ToArray())
-              //  must be a type with a name that ends with ViewModel
-              .Where(type => type.Name.EndsWith("ViewModel"))
-              //  must be in a namespace ending with ViewModels
-              .Where(type => EnforceNamespaceConvention ? (!(string.IsNullOrWhiteSpace(type.Namespace)) && type.Namespace.EndsWith("ViewModels")) : true)
-              //  must implement INotifyPropertyChanged (deriving from PropertyChangedBase will statisfy this)
-              .Where(type => type.GetInterface(ViewModelBaseType.Name, false) != null)
-              //  registered as self
-              .AsSelf()
-              //  always create a new one
-              .InstancePerDependency();
+                .Where(CheckRegisterViewModel)
+                .AsSelf() 
+                //  always create a new one
+                .InstancePerDependency();
 
             //  register views
             builder.RegisterAssemblyTypes(AssemblySource.Instance.ToArray())
-              //  must be a type with a name that ends with View
-              .Where(type => type.Name.EndsWith("View"))
-              //  must be in a namespace that ends in Views
-              .Where(type => EnforceNamespaceConvention ? (!(string.IsNullOrWhiteSpace(type.Namespace)) && type.Namespace.EndsWith("Views")) : true)
-              //  registered as self
-              .AsSelf()
-              //  always create a new one
-              .InstancePerDependency();
+                .Where(CheckRegisterView) 
+                //  registered as self
+                .AsSelf() 
+                //  always create a new one
+                .InstancePerDependency();
 
             //  register the single window manager for this container
             builder.Register<IWindowManager>(c => CreateWindowManager()).InstancePerLifetimeScope();
